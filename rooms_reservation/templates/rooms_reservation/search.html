@@ -1,0 +1,32 @@
+{% extends "rooms_reservation/base.html" %}
+{% load rooms_reservation.extras %}
+
+{% block content %}
+    <h3>Searching results:</h3>
+    {% if rooms %}
+        <table>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>capacity</th>
+                <th>projector</th>
+                <th>status for today</th>
+                <th>modify room</th>
+                <th>delete room</th>
+            </tr>
+            {% for room in rooms %}
+                <tr>
+                    <td>{{ room.id }}</td>
+                    <td><a href="{% url 'room' room.id %}">{{ room.name }}</a></td>
+                    <td>{{ room.capacity }}</td>
+                    <td>{{ room.projector }}</td>
+                    <td>{{ room|reservation_status_for_today }}</td>
+                    <td><a href="{% url 'modify' room.id %}">modify</a></td>
+                    <td><a href="{% url 'delete' room.id %}">delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <br>No hits for given searching criteria.
+    {% endif %}
+{% endblock content %}

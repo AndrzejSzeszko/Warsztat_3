@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rooms Reservation</title>
+    <link rel="stylesheet" type="text/css" href="{% static "rooms_reservation/style.css" %}">
+</head>
+<body>
+    <h1>Rooms reservation manager</h1>
+    <fieldset>
+        <a href="{% url 'all' %}">Show all rooms/search rooms</a>
+        <a href="{% url 'new' %}">Add new room</a>
+    </fieldset>
+    {% block content %}
+    {% endblock content %}
+</body>
+</html>

@@ -1,0 +1,37 @@
+{% extends "rooms_reservation/base.html" %}
+
+{% block content %}
+    <h3>Making reservation for:</h3>
+    <p>ID: {{ id }}</p>
+    <p>Name: {{ name }}</p>
+    <p>Capacity: {{ capacity }}</p>
+    <p>Projector: {{ projector }}</p>
+    <label>Room reserved for:
+        {% if reservations %}
+            <table>
+                <th>Date</th>
+                <th>Commentary</th>
+                {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.date|date:"Y-m-d" }}</td>
+                        <td>{{ reservation.commentary }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <br>No incoming reservations for this room.
+        {% endif %}
+    </label>
+    <h3>Reservation details:</h3>
+    <form action="#" method="post">
+        {% csrf_token %}
+        <label>Choose date:
+            <input name="date" type="date" min="{{ min_date }}">
+        </label><br>
+        <label>Commentary:
+            <input name="commentary" type="text" maxlength="256">
+        </label><br>
+        <button name="reserve" type="submit" value="reserve">Reserve!</button>
+    </form>
+    {{ message }}
+{% endblock content %}

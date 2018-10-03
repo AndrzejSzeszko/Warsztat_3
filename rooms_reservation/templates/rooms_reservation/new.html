@@ -1,0 +1,19 @@
+{% extends 'rooms_reservation/base.html' %}
+
+{% block content %}
+    <form action="#" method="post">
+        {% csrf_token %}
+        <h3>Adding new room:</h3>
+        <label>Name:
+            <input name="name" type="text" maxlength="128">
+        </label><br>
+        <label>Capacity:
+            <input name="capacity" type="number" min="1">
+        </label><br>
+        <label>Projector:
+            <input name="projector" type="checkbox" value="True" checked>
+        </label><br>
+        <button name="save" type="submit" value="save">Save to database</button>
+    </form>
+    {{ message }}
+{% endblock content %}

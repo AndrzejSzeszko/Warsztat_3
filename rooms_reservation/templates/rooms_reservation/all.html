@@ -1,0 +1,49 @@
+{% extends 'rooms_reservation/base.html' %}
+{% load rooms_reservation.extras %}
+
+{% block content %}
+    <fieldset>
+        <legend>SEARCHING</legend>
+        <form action="{% url 'search' %}" method="GET">
+            <label>Room name:
+                <input name="search_name" type="text" maxlength="128">
+            </label><br>
+            <label>Minimal capacity:
+                <input name="search_capacity" type="number" min="1">
+            </label><br>
+            <label>Projector:
+                <input name="search_projector" type="radio" value="Yes">Yes
+                <input name="search_projector" type="radio" value="No">No
+                <input name="search_projector" type="radio" value="None" checked>Doesn't matter
+            </label><br>
+            <label>Available for:
+                <input name="search_date" type="date" min="{{ today|date:"Y-m-d" }}">
+            </label><br>
+            <input name="search" type="submit" value="search">
+        </form>
+    </fieldset>
+
+    <h3>List of all rooms:</h3>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>capacity</th>
+            <th>projector</th>
+            <th>status for today</th>
+            <th>modify room</th>
+            <th>delete room</th>
+        </tr>
+        {% for room in rooms %}
+            <tr>
+                <td>{{ room.id }}</td>
+                <td><a href="{% url 'room' room.id %}">{{ room.name }}</a></td>
+                <td>{{ room.capacity }}</td>
+                <td>{{ room.projector }}</td>
+                <td>{{ room|reservation_status_for_today }}</td>
+                <td><a href="{% url 'modify' room.id %}">modify</a></td>
+                <td><a href="{% url 'delete' room.id %}">delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

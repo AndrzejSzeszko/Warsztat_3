@@ -80,7 +80,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'coderslab',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.path.join(BASE_DIR, 'rooms_reservation'),
+        'NAME': 'rooms_reservation',
     }
 }
 

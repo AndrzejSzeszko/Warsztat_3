@@ -1,0 +1,26 @@
+{%  extends 'rooms_reservation/base.html' %}
+
+{% block content %}
+    <h3>Details of chosen room:</h3>
+    <p>ID: {{ id }}</p>
+    <p>Name: {{ name }}</p>
+    <p>Capacity: {{ capacity }}</p>
+    <p>Projector: {{ projector }}</p>
+    <label>Room reserved for:
+        {% if not reservations %}
+            <br>No incoming reservations for this room.
+        {% else %}
+            <table>
+                <th>Date</th>
+                <th>Commentary</th>
+                {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.date|date:"Y-m-d" }}</td>
+                        <td>{{ reservation.commentary }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </label>
+    <p><a href="{% url 'reserve' id %}">Reserve this room!</a></p>
+{% endblock content %}
