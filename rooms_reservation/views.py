@@ -105,7 +105,7 @@ class RoomReserve(View):
         name = room.name
         capacity = room.capacity
         projector = room.projector
-        reservations = room.reservation_set.filter(date__gte=datetime.now().date()).order_by('-date')
+        reservations = room.reservation_set.filter(date__gte=datetime.now().date()).order_by('date')
 
         return render(request, 'rooms_reservation/reserve.html', {'id': id,
                                                                   'min_date': min_date,
@@ -120,7 +120,7 @@ class RoomReserve(View):
         room = Room.objects.get(pk=id)
         today = datetime.now().date()
 
-        reservations = room.reservation_set.filter(date__gte=today).order_by('-date')
+        reservations = room.reservation_set.filter(date__gte=today).order_by('date')
         name = room.name
         capacity = room.capacity
         projector = room.projector
