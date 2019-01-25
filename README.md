@@ -3,7 +3,7 @@ Warsztat 3 Coderslab - rooms reservation
 
 <a href="https://kyrieeleyson.pythonanywhere.com/">link to deployed version</a>
 
-## To Do:
+## To do:
 - domain name
 - resetting password via eamil
 - add some Bootstrap
