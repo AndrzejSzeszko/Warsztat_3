@@ -5,6 +5,6 @@ Warsztat 3 Coderslab - rooms reservation
 
 ## To do:
 - domain name
-- resetting password via eamil
+- resetting password via email
 - add some Bootstrap
 - access control (logging in)
